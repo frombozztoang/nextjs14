@@ -1,7 +1,7 @@
 import { URL } from "../../app/(home)/page";
 import styles from "./movie-info.module.css";
 
-const getMovies = async (id: string) => {
+export const getMovies = async (id: string) => {
   console.log(`fetching movies: ${Date.now()}`);
   //   await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await fetch(`${URL}/${id}`);

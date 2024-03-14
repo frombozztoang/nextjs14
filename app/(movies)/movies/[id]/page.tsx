@@ -1,9 +1,22 @@
 import { Suspense } from "react";
 
-import MovieInfo from "../../../../components/movie-info/movie-info";
+import MovieInfo, {
+  getMovies,
+} from "../../../../components/movie-info/movie-info";
 import MovieVideos from "../../../../components/movie-videos/movie-videos";
 
-const page = async ({ params: { id } }: { params: { id: string } }) => {
+interface IParams {
+  params: { id: string };
+}
+
+export const generateMetadata = async ({ params: { id } }: IParams) => {
+  const movie = await getMovies(id);
+  return {
+    title: movie.title,
+  };
+};
+
+const page = async ({ params: { id } }: IParams) => {
   return (
     <div>
       {/* suspense component에는 fallback이라는 prop이 있고 이건 component가 await */}
